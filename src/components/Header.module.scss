@@ -1,0 +1,12 @@
+@use "../scss/abstracts/" as *;
+
+header {
+  @include flex(row, center, center);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: $mainHeaderSize;
+  padding: $mediumSpacing $largeSpacing;
+  background-color: var(--primaryColor);
+  color: var(--text-color);
+}

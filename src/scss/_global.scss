@@ -1,5 +1,6 @@
 @use "./abstracts/" as *;
-@import url(../assets/fonts/css/roboto.css);
+@import url(../assets/fonts/css/fontiran.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;500&display=swap");
 
 html {
   /* ****Colors**** */
@@ -19,7 +20,7 @@ html {
   --rejected-textColor: #9d0e0e;
 
   /* ****Font family**** */
-  --fontFamily: "Roboto", sans-serif;
+  --fontFamily: "Poppins", "Roboto", sans-serif;
 }
 html[theme="dark"] {
   //dark theme
@@ -34,6 +35,10 @@ html[theme="dark"] {
   --pending-textColor: #a5e9ff;
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #f2bebe;
+}
+
+html[dir="rtl"] {
+  --fontFamily: iranyekan, "IRANSans", "Tahoma";
 }
 
 *,
@@ -97,6 +102,8 @@ input[type=file]::-webkit-file-upload-button {
 
 //general styles
 body {
+  padding-top: $mainHeaderSize;
+
   background-color: var(--bgc);
   color: var(--text-color);
   font-family: var(--fontFamily);
