@@ -1,20 +1,35 @@
 @use "../scss/abstracts/" as *;
 
 .container {
-  @include flex();
   width: 100vw;
-  height: 40px;
+  height: 100vh;
 
-  & > :first-child {
+  .titles {
+    @include flex(row, center, flex-start);
+    height: 40px;
+    padding-top: $mediumSpacing;
+    font-size: 1.5rem;
     text-align: center;
-    width: 50%;
+    & > :first-child {
+      width: 50%;
+    }
+
+    & > :last-child {
+      width: 50%;
+    }
   }
-  .divider {
-    border: 1px solid var(--secondaryColor);
-    height: 90vh;
-  }
-  & > :last-child {
-    width: 50%;
-    text-align: center;
+
+  .sections {
+    @include flex(row, center, flex-start);
+    & > :first-child {
+      width: 50%;
+    }
+    .divider {
+      border: 1px solid var(--secondaryColor);
+      height: 80vh;
+    }
+    & > :last-child {
+      width: 50%;
+    }
   }
 }

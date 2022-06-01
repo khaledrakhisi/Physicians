@@ -110,9 +110,9 @@ body {
   font-size: $fontSizeBodyMedium;
   line-height: 1.5em;
   overflow-x: hidden;
-  @include tablet {
-    background-color: var(--secondaryColor);
-  }
+  // @include tablet {
+  //   background-color: var(--secondaryColor);
+  // }
 }
 
 .title {
