@@ -2,7 +2,9 @@ import React from "react";
 
 import { IPhysician } from "../interfaces/Physician";
 
-import classes from "./PhysicianList.module.scss";
+import { PhysicianCard } from "./PhysicianCard";
+
+import classes from "./PhysiciansList.module.scss";
 
 interface IPhysicianListProps {
   physicians: Array<IPhysician>;
@@ -11,5 +13,11 @@ interface IPhysicianListProps {
 export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   physicians,
 }) => {
-  return <ul className={classes.physician_list}>List</ul>;
+  return (
+    <ul className={classes.physician_list}>
+      {physicians.map((phy) => (
+        <PhysicianCard physician={phy} key={phy.id} />
+      ))}
+    </ul>
+  );
 };

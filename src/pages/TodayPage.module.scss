@@ -2,12 +2,15 @@
 
 .container {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - $mainHeaderSize);
 
   .titles {
     @include flex(row, center, flex-start);
-    height: 40px;
+    background-color: var(--primaryColor);
+    color: #fff;
+    height: $mainHeaderSize;
     padding-top: $mediumSpacing;
+    margin-bottom: $mediumSpacing;
     font-size: 1.5rem;
     text-align: center;
     & > :first-child {
@@ -21,6 +24,9 @@
 
   .sections {
     @include flex(row, center, flex-start);
+    overflow: hidden;
+    // height: calc(100vh - ($mainHeaderSize + $mainHeaderSize + $largeSpacing));
+    // height: 500px;
     & > :first-child {
       width: 50%;
     }

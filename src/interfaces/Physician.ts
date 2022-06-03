@@ -1,7 +1,7 @@
 export interface IPhysician {
   id: string;
   name: string;
-  startTime: Date;
+  startTime: string;
   specialty: string;
   remainingAppointments: number;
 }

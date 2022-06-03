@@ -1,0 +1,84 @@
+@use "../scss/abstracts/" as *;
+
+.physician_card {
+  @include flex(column, flex-start);
+  background-color: var(--bgc);
+  border-radius: 2px 2px 5px 5px;
+  box-shadow: $secondBoxShadow;
+  min-width: 210px;
+  width: 85%;
+  min-height: 150px;
+  // max-height: 190px;
+  margin: $smallSpacing;
+  overflow: hidden;
+
+  &__header {
+    // @include flex(row, space-between, center);
+    @include flex(row, center, center);
+    background: var(--secondaryColor);
+    border-radius: 2px 2px 0 0;
+    padding: $smallSpacing;
+    width: 100%;
+    height: 70px;
+    cursor: move;
+    color: #fff;
+    font-size: $fontSizeHeadlineLarge;
+  }
+
+  &__info {
+    @include flex(row, flex-start, center);
+    width: 100%;
+    height: 100px;
+    padding: $smallSpacing;
+
+    &__avatar {
+      // margin-left: auto;
+      width: 80px;
+    }
+
+    & > h3 {
+      color: var(--secondaryColor);
+      margin: $mediumSpacing;
+      text-align: center;
+      font-size: $fontSizeHeadlineLarge;
+      height: 50px;
+      line-height: 50px;
+      @include overflowEllipses(4);
+    }
+
+    &__subinfo {
+      @include flex(column, flex-start);
+      width: 35%;
+      margin-right: auto;
+      padding: $smallSpacing;
+
+      &__hour {
+        @include flex(row, space-between);
+        margin-right: auto;
+        width: 100%;
+        height: 30px;
+        color: var(--text-color);
+
+        & > h2 {
+          color: var(--secondaryColor);
+        }
+      }
+
+      &__remaining {
+        @include flex(row, space-between);
+        margin-right: auto;
+        width: 100%;
+        height: 50px;
+
+        & > h2 {
+          @include flex();
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+          background-color: var(--secondaryColor);
+          color: #fff;
+        }
+      }
+    }
+  }
+}

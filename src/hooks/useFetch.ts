@@ -5,7 +5,7 @@ import { fake_fetch } from "../apis/api";
 interface State<T> {
   data?: T;
   error?: Error;
-  status?: string;
+  status?: "loading" | "fetched" | "error" | null;
   sendRequest: (url: string, method: string) => void;
 }
 
@@ -19,7 +19,7 @@ function useFetch<T = unknown>(): State<T> {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
-    status: "",
+    status: null,
     sendRequest: () => {},
   };
 

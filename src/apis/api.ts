@@ -2,38 +2,30 @@
  * Pseudo APIs
  */
 
-import { IPhysician } from "../interfaces/Physician";
-
 import { MOCK_PHYSICIANS } from "./data";
 
-interface IApiState<T> {
-  data?: T;
-  error?: Error;
-  status: string;
-}
+const FAKE_API_DELAY: number = 2e3;
 
-const FAKE_API_DELAY: number = 1e3;
-
-export const fetchAllUsers = async (): Promise<
-  IApiState<Array<IPhysician>>
-> => {
+export const fake_fetch = async <T>(
+  url: string,
+  method: string
+): Promise<T> => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        status: "success",
-        data: MOCK_PHYSICIANS,
-      });
-    }, FAKE_API_DELAY);
+    if (url.startsWith(`${process.env.REACT_APP_BACKEND_URL}/physicians/:`)) {
+      const param = url.substring(url.indexOf("/:") + 2);
+      // console.log(param);
+
+      setTimeout(() => {
+        resolve(
+          MOCK_PHYSICIANS.find(
+            (datum) => datum.id.toLowerCase() === param.toLowerCase()
+          ) as any
+        );
+      }, FAKE_API_DELAY);
+    } else if (url === `${process.env.REACT_APP_BACKEND_URL}/physicians/`) {
+      setTimeout(() => {
+        resolve(MOCK_PHYSICIANS as any);
+      }, FAKE_API_DELAY);
+    }
   });
 };
-
-// export const fetchAllHobbies = async (): Promise<IApiState<Array<IHobby>>> => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({
-//         status: "success",
-//         data: MOCK_HOBBIES,
-//       });
-//     }, FAKE_API_DELAY);
-//   });
-// };
