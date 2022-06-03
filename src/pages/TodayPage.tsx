@@ -36,13 +36,13 @@ export const TodayPage = () => {
       <div className={classes.sections}>
         <section>
           <PhysiciansList
-            physicians={physicians.filter((phy) => phy.startTime)}
+            physicians={physicians.filter((phy) => phy.startTime < "13:00")}
           />
         </section>
         <div className={classes.divider} />
         <section>
           <PhysiciansList
-            physicians={physicians.filter((phy) => phy.startTime)}
+            physicians={physicians.filter((phy) => phy.startTime > "13:00")}
           />
         </section>
       </div>

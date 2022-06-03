@@ -30,4 +30,18 @@ export const MOCK_PHYSICIANS: Array<IPhysician> = [
     startTime: "08:30",
     remainingAppointments: 10,
   },
+  {
+    id: generateKey("phy_5_"),
+    name: "آقای دکتر نژادیان",
+    specialty: "درمانگاه اطفال",
+    startTime: "19:00",
+    remainingAppointments: 0,
+  },
+  {
+    id: generateKey("phy_6_"),
+    name: "خانم دکتر میرزایی",
+    specialty: "درمانگاه مغز و اعصاب",
+    startTime: "08:30",
+    remainingAppointments: 11,
+  },
 ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { IPhysician } from "../interfaces/Physician";
 
@@ -13,8 +13,21 @@ interface IPhysicianListProps {
 export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   physicians,
 }) => {
+  const bottomRef = useRef<HTMLUListElement | null>(null);
+
+  const scrollToBottom = () => {
+    if (bottomRef.current)
+      bottomRef.current.scroll({
+        top: bottomRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+  };
+
   return (
-    <ul className={classes.physician_list}>
+    <ul className={classes.physician_list} ref={bottomRef}>
+      <button type="button" onClick={scrollToBottom}>
+        Scroll To Bottom
+      </button>
       {physicians.map((phy) => (
         <PhysicianCard physician={phy} key={phy.id} />
       ))}

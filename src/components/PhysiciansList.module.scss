@@ -5,14 +5,5 @@
   // max-height: 80vh;
   // height: 100%;
   overflow: scroll;
-  height: calc(100vh - ($mainHeaderSize + $mainHeaderSize + $largeSpacing));
-}
-
-@keyframes scroll {
-  95% {
-    top: -100%;
-  }
-  100% {
-    top: 0;
-  }
+  height: calc(100vh - ($mainHeaderSize + $mainHeaderSize));
 }
