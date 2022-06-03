@@ -14,7 +14,16 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
 }) => {
   return (
     <li className={classes.physician_card}>
-      <div className={classes.physician_card__header}>
+      <div
+        className={classes.physician_card__header}
+        style={{
+          backgroundColor: `${
+            physician.remainingAppointments
+              ? "var(--secondaryColor)"
+              : "var(--disabled-bgc)"
+          }`,
+        }}
+      >
         <h1>{`${physician.specialty}`}</h1>
         {/* <h1>{"طبیب الداخلی"}</h1> */}
       </div>
@@ -28,18 +37,45 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
               : images.doctorFemale
           }
           alt="Doctor face"
+          style={{
+            fill: `${
+              physician.remainingAppointments
+                ? "var(--secondaryColor)"
+                : "var(--disabled-bgc)"
+            }`,
+          }}
         />
-        <h3>{physician.name}</h3>
+        <h3
+          style={{
+            color: `${
+              physician.remainingAppointments
+                ? "var(--secondaryColor)"
+                : "var(--disabled-bgc)"
+            }`,
+          }}
+        >
+          {physician.name}
+        </h3>
 
         <section className={classes.physician_card__info__subinfo}>
           <div className={classes.physician_card__info__subinfo__hour}>
-            <h3>{"زمان حضور"}</h3>
+            <h3>{"ساعت حضور"}</h3>
             <h2>{physician.startTime}</h2>
           </div>
 
           <div className={classes.physician_card__info__subinfo__remaining}>
             <h3>{"نوبت های مانده"}</h3>
-            <h2>{physician.remainingAppointments}</h2>
+            <h2
+              style={{
+                backgroundColor: `${
+                  physician.remainingAppointments
+                    ? "var(--secondaryColor)"
+                    : "var(--disabled-bgc)"
+                }`,
+              }}
+            >
+              {physician.remainingAppointments}
+            </h2>
           </div>
         </section>
       </div>

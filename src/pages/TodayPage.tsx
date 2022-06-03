@@ -37,12 +37,14 @@ export const TodayPage = () => {
         <section>
           <PhysiciansList
             physicians={physicians.filter((phy) => phy.startTime < "13:00")}
+            scrollInterval={10e3}
           />
         </section>
         <div className={classes.divider} />
         <section>
           <PhysiciansList
             physicians={physicians.filter((phy) => phy.startTime > "13:00")}
+            scrollInterval={7e3}
           />
         </section>
       </div>

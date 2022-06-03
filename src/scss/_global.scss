@@ -18,6 +18,7 @@ html {
   --pending-textColor: #086785;
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #9d0e0e;
+  --disabled-bgc: #8e8e8e;
 
   /* ****Font family**** */
   --fontFamily: "Poppins", "Roboto", sans-serif;
@@ -195,7 +196,7 @@ body {
 
 //$-------- scrollbar styles
 ::-webkit-scrollbar {
-  display: none;
+  display: block;
 
   // @include tablet {
   // display: unset;

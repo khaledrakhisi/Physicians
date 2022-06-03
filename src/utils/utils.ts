@@ -10,3 +10,8 @@ export function generateLightColorHex() {
     ).slice(-2);
   return color;
 }
+
+export function getTodayFullDate() {
+  const options = { year: "numeric", month: "long", day: "numeric" } as const;
+  return new Date().toLocaleDateString("fa-IR", options);
+}

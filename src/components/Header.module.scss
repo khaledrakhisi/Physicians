@@ -7,6 +7,13 @@ header {
   width: 100%;
   height: $mainHeaderSize;
   padding: $mediumSpacing $largeSpacing;
-  background-color: var(--secondaryColor);
+  background-color: var(--bgc);
   color: var(--text-color);
+
+  transition: all ease 5s;
+
+  & > span {
+    // color: var(--rejected-textColor);
+    padding: 0 $smallSpacing;
+  }
 }
