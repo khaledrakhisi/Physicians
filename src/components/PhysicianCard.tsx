@@ -1,6 +1,6 @@
 import React from "react";
 
-import { images } from "../constants/images";
+import { Images } from "../constants/images";
 import { IPhysician } from "../interfaces/Physician";
 
 import classes from "./PhysicianCard.module.scss";
@@ -13,46 +13,47 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
   physician,
 }) => {
   return (
-    <li className={classes.physician_card}>
+    <li
+      className={`${classes.physician_card} ${
+        !physician.remainingAppointments ? classes.disabled : null
+      }`}
+    >
       <div
-        className={classes.physician_card__header}
-        style={{
-          backgroundColor: `${
-            physician.remainingAppointments
-              ? "var(--secondaryColor)"
-              : "var(--disabled-bgc)"
-          }`,
-        }}
+        className={`${classes.physician_card__header} ${
+          !physician.remainingAppointments ? classes.disabled : null
+        }`}
       >
         <h1>{`${physician.specialty}`}</h1>
         {/* <h1>{"طبیب الداخلی"}</h1> */}
       </div>
 
       <div className={classes.physician_card__info}>
-        <img
+        {/* <img
           className={classes.physician_card__info__avatar}
           src={
-            physician.name.includes("آقا")
+            physician.name.startsWith("آقا")
               ? images.doctorMale
               : images.doctorFemale
           }
           alt="Doctor face"
-          style={{
-            fill: `${
-              physician.remainingAppointments
-                ? "var(--secondaryColor)"
-                : "var(--disabled-bgc)"
-            }`,
-          }}
-        />
+        /> */}
+        {physician.name.startsWith("آقا") ? (
+          <Images.DoctorMale
+            className={`${classes.physician_card__info__avatar} ${
+              !physician.remainingAppointments ? classes.disabled : null
+            }`}
+          />
+        ) : (
+          <Images.DoctorFemale
+            className={`${classes.physician_card__info__avatar} ${
+              !physician.remainingAppointments ? classes.disabled : null
+            }`}
+          />
+        )}
         <h3
-          style={{
-            color: `${
-              physician.remainingAppointments
-                ? "var(--secondaryColor)"
-                : "var(--disabled-bgc)"
-            }`,
-          }}
+          className={`${
+            !physician.remainingAppointments ? classes.disabled : null
+          }`}
         >
           {physician.name}
         </h3>
@@ -60,19 +61,21 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
         <section className={classes.physician_card__info__subinfo}>
           <div className={classes.physician_card__info__subinfo__hour}>
             <h3>{"ساعت حضور"}</h3>
-            <h2>{physician.startTime}</h2>
+            <h2
+              className={`${
+                !physician.remainingAppointments ? classes.disabled : null
+              }`}
+            >
+              {physician.startTime}
+            </h2>
           </div>
 
           <div className={classes.physician_card__info__subinfo__remaining}>
             <h3>{"نوبت های مانده"}</h3>
             <h2
-              style={{
-                backgroundColor: `${
-                  physician.remainingAppointments
-                    ? "var(--secondaryColor)"
-                    : "var(--disabled-bgc)"
-                }`,
-              }}
+              className={`${
+                !physician.remainingAppointments ? classes.disabled : null
+              }`}
             >
               {physician.remainingAppointments}
             </h2>

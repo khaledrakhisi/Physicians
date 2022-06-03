@@ -10,7 +10,7 @@ header {
   background-color: var(--bgc);
   color: var(--text-color);
 
-  transition: all ease 5s;
+  @include trans(all ease 5s);
 
   & > span {
     // color: var(--rejected-textColor);

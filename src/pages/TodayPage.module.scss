@@ -1,24 +1,53 @@
 @use "../scss/abstracts/" as *;
 
+@mixin listIsEmptySyles {
+  & > h1 {
+    font-size: $fontSizeHeadlineLarge;
+    color: var(--text-Color);
+    text-align: center;
+    padding: $largeSpacing;
+  }
+}
+
+@mixin iconStyles {
+  width: 65px;
+  fill: #fff;
+  padding: 0 $mediumSpacing;
+  @include animate(rotating, 3s, linear, infinite);
+}
+
 .container {
   width: 100vw;
   height: calc(100vh - $mainHeaderSize);
 
   .titles {
-    @include flex(row, center, flex-start);
+    @include flex();
     background-color: var(--primaryColor);
     color: #fff;
     height: $mainHeaderSize;
-    padding-top: $mediumSpacing;
+    // padding-top: $mediumSpacing;
     // margin-bottom: $mediumSpacing;
     font-size: 1.5rem;
     text-align: center;
+
+    // Right Section (Morning)
     & > :first-child {
+      @include flex();
       width: 50%;
+
+      & > .icon {
+        @include iconStyles();
+      }
     }
 
+    // Left Section (Evening)
     & > :last-child {
+      @include flex();
       width: 50%;
+
+      & > .icon {
+        @include iconStyles();
+      }
     }
   }
 
@@ -29,6 +58,8 @@
     // height: 500px;
     & > :first-child {
       width: 50%;
+
+      @include listIsEmptySyles();
     }
     .divider {
       border: 1px solid var(--secondaryColor);
@@ -36,6 +67,17 @@
     }
     & > :last-child {
       width: 50%;
+
+      @include listIsEmptySyles();
     }
+  }
+}
+
+@include keyframes(rotating) {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

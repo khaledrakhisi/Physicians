@@ -4,7 +4,7 @@
 
 html {
   /* ****Colors**** */
-  --primaryColor: #f04d24;
+  --primaryColor: #2655d6;
   --secondaryColor: #00a36e;
   //light theme
   --bgc: #f2f2f2;
@@ -18,7 +18,7 @@ html {
   --pending-textColor: #086785;
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #9d0e0e;
-  --disabled-bgc: #8e8e8e;
+  --disabled-bgc: #696868;
 
   /* ****Font family**** */
   --fontFamily: "Poppins", "Roboto", sans-serif;
@@ -36,6 +36,7 @@ html[theme="dark"] {
   --pending-textColor: #a5e9ff;
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #f2bebe;
+  --disabled-bgc: #adadad;
 }
 
 html[dir="rtl"] {

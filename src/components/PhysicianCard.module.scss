@@ -23,6 +23,10 @@
     cursor: move;
     color: #fff;
     font-size: $fontSizeHeadlineLarge;
+
+    &.disabled {
+      background: var(--disabled-bgc);
+    }
   }
 
   &__info {
@@ -32,8 +36,12 @@
     padding: $smallSpacing;
 
     &__avatar {
-      // margin-left: auto;
+      fill: var(--primaryColor);
       width: 80px;
+
+      &.disabled {
+        fill: var(--disabled-bgc);
+      }
     }
 
     & > h3 {
@@ -44,6 +52,10 @@
       height: 50px;
       line-height: 50px;
       @include overflowEllipses(4);
+
+      &.disabled {
+        color: var(--disabled-bgc);
+      }
     }
 
     &__subinfo {
@@ -61,6 +73,10 @@
 
         & > h2 {
           color: var(--secondaryColor);
+
+          &.disabled {
+            color: var(--disabled-bgc);
+          }
         }
       }
 
@@ -77,6 +93,10 @@
           border-radius: 100%;
           background-color: var(--secondaryColor);
           color: #fff;
+
+          &.disabled {
+            background: var(--disabled-bgc);
+          }
         }
       }
     }
