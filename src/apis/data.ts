@@ -7,7 +7,7 @@ export const MOCK_PHYSICIANS: Array<IPhysician> = [
     name: "آقای دکتر فرشاد",
     specialty: "درمانگاه قلب",
     startTime: "16:30",
-    remainingAppointments: 4,
+    remainingAppointments: 15,
   },
   {
     id: generateKey("phy_2_"),

@@ -16,6 +16,10 @@ export function getTodayFullDate() {
   return new Date().toLocaleDateString("fa-IR", options);
 }
 
+export function getCurrentTime() {
+  return new Date().toTimeString();
+}
+
 export function convertMsToHM(milliseconds: number) {
   const seconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor(seconds / 60);

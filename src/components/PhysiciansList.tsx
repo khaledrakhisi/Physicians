@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 
+import { config } from "../config/config";
 import { useTimer } from "../hooks/useTimer";
 import { IPhysician } from "../interfaces/Physician";
 
 import { PhysicianCard } from "./PhysicianCard";
 
 import classes from "./PhysiciansList.module.scss";
-
-const SCROLL_VALUE = 150;
 
 interface IPhysicianListProps {
   physicians: Array<IPhysician>;
@@ -18,17 +17,18 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   physicians,
   scrollInterval,
 }) => {
-  const bottomRef = useRef<HTMLUListElement | null>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
   const [scrollDirection, setScrollDirection] = useState<number>(1);
 
   useTimer(() => {
-    if (physicians.length < 4) {
-      return;
-    }
+    if (listRef.current) {
+      // if list is not scrollable
+      if (listRef.current.scrollHeight <= listRef.current.clientHeight) {
+        return;
+      }
 
-    if (bottomRef.current) {
-      bottomRef.current.scrollBy({
-        top: SCROLL_VALUE * scrollDirection,
+      listRef.current.scrollBy({
+        top: config.scrollStepValue * scrollDirection,
         behavior: "smooth",
       });
 
@@ -39,12 +39,12 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
         // );
 
         if (
-          bottomRef.current!.offsetHeight + bottomRef.current!.scrollTop >=
-          bottomRef.current!.scrollHeight
+          listRef.current!.offsetHeight + listRef.current!.scrollTop >=
+          listRef.current!.scrollHeight
         ) {
           return -1;
         }
-        if (bottomRef.current!.scrollTop <= 0) {
+        if (listRef.current!.scrollTop <= 0) {
           return 1;
         }
         return prev;
@@ -53,7 +53,7 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   }, scrollInterval);
 
   return (
-    <ul className={classes.physician_list} ref={bottomRef}>
+    <ul className={classes.physician_list} ref={listRef}>
       {physicians.length ? (
         physicians.map((phy) => <PhysicianCard physician={phy} key={phy.id} />)
       ) : (

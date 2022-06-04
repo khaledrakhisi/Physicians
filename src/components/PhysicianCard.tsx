@@ -77,7 +77,7 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
                 !physician.remainingAppointments ? classes.disabled : null
               }`}
             >
-              {physician.remainingAppointments}
+              {physician.remainingAppointments.toLocaleString("fa-IR")}
             </h2>
           </div>
         </section>

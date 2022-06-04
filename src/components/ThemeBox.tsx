@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import ThemeContext, { ETheme } from "../store/ThemeContext";
 
 import classes from "./ThemeBox.module.scss";
 
 function ThemeBox() {
-  // const [theme, setTheme] = useState("light");
   const themeCtx = useContext(ThemeContext);
 
   return (

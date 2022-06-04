@@ -52,7 +52,7 @@
     }
     .divider {
       border: 1px solid var(--secondaryColor);
-      height: 80vh;
+      height: calc(100vh - ($mainHeaderSize + $mainHeaderSize));
     }
     & > :last-child {
       width: 50%;

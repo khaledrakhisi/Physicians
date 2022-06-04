@@ -8,11 +8,13 @@ export enum ETheme {
 interface ITheme {
   theme: ETheme;
   toggleTheme: () => void;
+  setTheme: (newTheme: ETheme) => void;
 }
 
 const ThemeContext = React.createContext<ITheme>({
   theme: ETheme.light,
   toggleTheme: () => {},
+  setTheme: (newTheme: ETheme) => {},
 });
 
 interface IThemeContextProviderProps {
@@ -35,6 +37,7 @@ export const ThemeContextProvider: React.FunctionComponent<
   const themeValue: ITheme = {
     theme,
     toggleTheme,
+    setTheme,
   };
   return (
     <ThemeContext.Provider value={themeValue}>{children}</ThemeContext.Provider>
