@@ -26,7 +26,7 @@ An application to show the physicians schedule on TV
 
 ## Overview
 
-![wireframe](./public/wireframe.png)
+![wireframe](./public/wireframe.jpg)
 
 ## Demo
 
