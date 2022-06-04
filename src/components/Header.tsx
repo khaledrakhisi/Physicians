@@ -1,25 +1,28 @@
 import { useState } from "react";
 
 import { useTimer } from "../hooks/useTimer";
-import { generateLightColorHex, getTodayFullDate } from "../utils/utils";
+import { getTodayFullDate } from "../utils/utils";
+
+import ThemeBox from "./ThemeBox";
 
 import "./Header.module.scss";
 
+const TIME_INTERVAL = 36e5; // 1 hour
+
 const Header = () => {
-  const [headerBGColor, setHeaderBGColor] = useState<string>("#fff");
-  const [todayDate, setTodayDate] = useState<string>("");
+  const [todayDate, setTodayDate] = useState<string>(getTodayFullDate());
 
   useTimer(() => {
-    setHeaderBGColor(generateLightColorHex());
     setTodayDate(getTodayFullDate());
-  }, 5e3);
+  }, TIME_INTERVAL);
 
   return (
-    <header style={{ backgroundColor: headerBGColor }}>
+    <header>
       <h1>{"نوبت های حضوری امروز"}</h1>
       <span>
         <h1>{todayDate}</h1>
       </span>
+      <ThemeBox />
     </header>
   );
 };

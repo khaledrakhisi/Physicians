@@ -4,16 +4,11 @@ import { IPhysician } from "../interfaces/Physician";
 
 type IPhysiciansContext = {
   physicians: Array<IPhysician>;
-  // updateEquipment: (
-  //   serialNumber: string,
-  //   newTelematicData: ITelematicData
-  // ) => void;
   setPhysicians: (equipments: Array<IPhysician>) => void;
 };
 
 const PhysiciansContext = React.createContext<IPhysiciansContext>({
   physicians: [],
-  // updateEquipment: () => {},
   setPhysicians: () => {},
 });
 
@@ -44,7 +39,6 @@ export const PhysiciansContextProvider: React.FunctionComponent<
 
   const physiciansValue: IPhysiciansContext = {
     physicians,
-    // updateEquipment,
     setPhysicians,
   };
   return (

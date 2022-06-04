@@ -2,7 +2,7 @@
 
 .physician_card {
   @include flex(column, flex-start);
-  background-color: var(--bgc);
+  background-color: var(--card-bgc);
   border-radius: 2px 2px 5px 5px;
   box-shadow: $secondBoxShadow;
   min-width: 210px;
@@ -11,6 +11,7 @@
   // max-height: 190px;
   margin: $smallSpacing;
   overflow: hidden;
+  @include trans(all ease 1s);
 
   &__header {
     // @include flex(row, space-between, center);
@@ -36,7 +37,7 @@
     padding: $smallSpacing;
 
     &__avatar {
-      fill: var(--primaryColor);
+      fill: var(--secondaryColor);
       width: 80px;
 
       &.disabled {
@@ -45,7 +46,7 @@
     }
 
     & > h3 {
-      color: var(--secondaryColor);
+      color: var(--text-color);
       margin: $mediumSpacing;
       text-align: center;
       font-size: $fontSizeHeadlineLarge;
@@ -54,7 +55,7 @@
       @include overflowEllipses(4);
 
       &.disabled {
-        color: var(--disabled-bgc);
+        color: var(--disabled-textColor);
       }
     }
 
@@ -91,7 +92,7 @@
           width: 40px;
           height: 40px;
           border-radius: 100%;
-          background-color: var(--secondaryColor);
+          background-color: var(--primaryColor);
           color: #fff;
 
           &.disabled {

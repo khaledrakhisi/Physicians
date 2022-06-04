@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { useTimer } from "../hooks/useTimer";
 import { IPhysician } from "../interfaces/Physician";
@@ -6,6 +6,8 @@ import { IPhysician } from "../interfaces/Physician";
 import { PhysicianCard } from "./PhysicianCard";
 
 import classes from "./PhysiciansList.module.scss";
+
+const SCROLL_VALUE = 150;
 
 interface IPhysicianListProps {
   physicians: Array<IPhysician>;
@@ -17,27 +19,46 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   scrollInterval,
 }) => {
   const bottomRef = useRef<HTMLUListElement | null>(null);
-  const [scrollPosition, setScrollPosition] = useState<number>(0);
-
-  useEffect(() => {
-    if (bottomRef.current)
-      bottomRef.current.scroll({
-        top: scrollPosition,
-        behavior: "smooth",
-      });
-  }, [scrollPosition]);
+  const [scrollDirection, setScrollDirection] = useState<number>(1);
 
   useTimer(() => {
+    if (physicians.length < 4) {
+      return;
+    }
+
     if (bottomRef.current) {
-      setScrollPosition((prev) => (prev ? 0 : bottomRef.current!.scrollHeight));
+      bottomRef.current.scrollBy({
+        top: SCROLL_VALUE * scrollDirection,
+        behavior: "smooth",
+      });
+
+      setScrollDirection((prev) => {
+        // console.log(
+        //   bottomRef.current!.offsetHeight + bottomRef.current!.scrollTop,
+        //   bottomRef.current!.scrollHeight
+        // );
+
+        if (
+          bottomRef.current!.offsetHeight + bottomRef.current!.scrollTop >=
+          bottomRef.current!.scrollHeight
+        ) {
+          return -1;
+        }
+        if (bottomRef.current!.scrollTop <= 0) {
+          return 1;
+        }
+        return prev;
+      });
     }
   }, scrollInterval);
 
   return (
     <ul className={classes.physician_list} ref={bottomRef}>
-      {physicians.map((phy) => (
-        <PhysicianCard physician={phy} key={phy.id} />
-      ))}
+      {physicians.length ? (
+        physicians.map((phy) => <PhysicianCard physician={phy} key={phy.id} />)
+      ) : (
+        <h1>{"در این شیفت پزشکی حضور ندارد"}</h1>
+      )}
     </ul>
   );
 };

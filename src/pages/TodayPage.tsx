@@ -32,6 +32,7 @@ export const TodayPage = () => {
         <section>
           <Images.Morning className={classes.icon} />
           <h1>{"صبح"}</h1>
+          {/* <h1>{physicians.filter((phy) => phy.startTime < "13:00").length}</h1> */}
         </section>
         <section>
           <Images.Evening className={classes.icon} />
@@ -40,25 +41,17 @@ export const TodayPage = () => {
       </div>
       <div className={classes.sections}>
         <section>
-          {physicians.length ? (
-            <PhysiciansList
-              physicians={physicians.filter((phy) => phy.startTime < "13:00")}
-              scrollInterval={10e3}
-            />
-          ) : (
-            <h1>{"در شیفت صبح پزشکی حضور ندارد"}</h1>
-          )}
+          <PhysiciansList
+            physicians={physicians.filter((phy) => phy.startTime < "13:00")}
+            scrollInterval={1e3}
+          />
         </section>
         <div className={classes.divider} />
         <section>
-          {physicians.length ? (
-            <PhysiciansList
-              physicians={physicians.filter((phy) => phy.startTime > "13:00")}
-              scrollInterval={7e3}
-            />
-          ) : (
-            <h1>{"در شیفت عصر پزشکی حضور ندارد"}</h1>
-          )}
+          <PhysiciansList
+            physicians={physicians.filter((phy) => phy.startTime > "13:00")}
+            scrollInterval={2e3}
+          />
         </section>
       </div>
     </section>

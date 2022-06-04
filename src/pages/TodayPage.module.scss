@@ -1,14 +1,5 @@
 @use "../scss/abstracts/" as *;
 
-@mixin listIsEmptySyles {
-  & > h1 {
-    font-size: $fontSizeHeadlineLarge;
-    color: var(--text-Color);
-    text-align: center;
-    padding: $largeSpacing;
-  }
-}
-
 @mixin iconStyles {
   width: 65px;
   fill: #fff;
@@ -58,8 +49,6 @@
     // height: 500px;
     & > :first-child {
       width: 50%;
-
-      @include listIsEmptySyles();
     }
     .divider {
       border: 1px solid var(--secondaryColor);
@@ -67,8 +56,6 @@
     }
     & > :last-child {
       width: 50%;
-
-      @include listIsEmptySyles();
     }
   }
 }

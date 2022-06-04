@@ -6,4 +6,11 @@
   // height: 100%;
   overflow: scroll;
   height: calc(100vh - ($mainHeaderSize + $mainHeaderSize));
+
+  & > h1 {
+    font-size: $fontSizeHeadlineLarge;
+    color: var(--text-Color);
+    text-align: center;
+    padding: $largeSpacing;
+  }
 }

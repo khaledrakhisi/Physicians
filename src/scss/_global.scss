@@ -19,15 +19,19 @@ html {
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #9d0e0e;
   --disabled-bgc: #696868;
+  --disabled-textColor: #474646;
 
   /* ****Font family**** */
   --fontFamily: "Poppins", "Roboto", sans-serif;
 }
 html[theme="dark"] {
+  /* ****Colors**** */
+  --primaryColor: #3d75aa;
+  --secondaryColor: #066129;
   //dark theme
   --bgc: #1b1a22;
-  --card-bgc: #1e2529;
-  --text-color: #ebebeb;
+  --card-bgc: #173041;
+  --text-color: #08bd4d;
 
   //light theme status
   --approved-bgc: rgba(66, 171, 8, 0.3);
@@ -36,7 +40,8 @@ html[theme="dark"] {
   --pending-textColor: #a5e9ff;
   --rejected-bgc: rgba(255, 56, 56, 0.3);
   --rejected-textColor: #f2bebe;
-  --disabled-bgc: #adadad;
+  --disabled-bgc: #474646;
+  --disabled-textColor: #929292;
 }
 
 html[dir="rtl"] {

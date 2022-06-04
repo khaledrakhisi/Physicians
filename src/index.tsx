@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import { PhysiciansContextProvider } from "./store/PhysiciansContext";
+import { ThemeContextProvider } from "./store/ThemeContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -12,9 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <PhysiciansContextProvider>
-        <App />
-      </PhysiciansContextProvider>
+      <ThemeContextProvider>
+        <PhysiciansContextProvider>
+          <App />
+        </PhysiciansContextProvider>
+      </ThemeContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -10,10 +10,21 @@ header {
   background-color: var(--bgc);
   color: var(--text-color);
 
-  @include trans(all ease 5s);
+  animation: bgc 4s linear alternate infinite;
 
   & > span {
     // color: var(--rejected-textColor);
     padding: 0 $smallSpacing;
+  }
+
+  // Themebox
+  & > :last-child {
+    margin-left: auto;
+  }
+}
+
+@include keyframes(bgc) {
+  100% {
+    background: rgb(random(255), random(255), random(255));
   }
 }
