@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { PhysiciansContextProvider } from "./store/PhysiciansContext";
 import { ThemeContextProvider } from "./store/ThemeContext";
+import { UIContextProvider } from "./store/UIContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -15,7 +16,9 @@ root.render(
     <BrowserRouter>
       <ThemeContextProvider>
         <PhysiciansContextProvider>
-          <App />
+          <UIContextProvider>
+            <App />
+          </UIContextProvider>
         </PhysiciansContextProvider>
       </ThemeContextProvider>
     </BrowserRouter>

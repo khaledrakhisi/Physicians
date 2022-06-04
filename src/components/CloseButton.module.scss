@@ -1,0 +1,20 @@
+@use "../scss/abstracts/" as *;
+
+.closeButton {
+  border: 0;
+  background: none;
+  margin: $smallSpacing;
+  height: 20px;
+  cursor: pointer;
+  @include trans(all 400ms ease);
+
+  .deleteIcon {
+    fill: var(--rejected-textColor);
+    &:hover {
+      opacity: 0.4;
+    }
+    &:active {
+      opacity: 1;
+    }
+  }
+}

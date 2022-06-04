@@ -4,7 +4,7 @@ import { fake_fetch } from "../apis/api";
 
 interface State<T> {
   data?: T;
-  error?: Error;
+  error?: string;
   status?: "loading" | "fetched" | "error" | null;
   sendRequest: (url: string, method: string) => void;
 }
@@ -13,7 +13,7 @@ interface State<T> {
 type Action<T> =
   | { type: "loading" }
   | { type: "fetched"; payload: T }
-  | { type: "error"; payload: Error };
+  | { type: "error"; payload: string };
 
 function useFetch<T = unknown>(): State<T> {
   const initialState: State<T> = {
@@ -49,7 +49,7 @@ function useFetch<T = unknown>(): State<T> {
 
       dispatch({ type: "fetched", payload: data as any });
     } catch (error) {
-      dispatch({ type: "error", payload: error as Error });
+      dispatch({ type: "error", payload: error as string });
     }
   };
 

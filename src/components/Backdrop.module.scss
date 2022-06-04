@@ -1,0 +1,16 @@
+@use "../scss/abstracts/" as *;
+
+.backdrop {
+  @include flex(column, flex-start);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000bd;
+  color: var(--text-color);
+  padding-top: 142px;
+
+  &.invisible {
+    display: none;
+  }
+}

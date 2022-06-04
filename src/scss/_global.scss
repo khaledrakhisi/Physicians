@@ -7,7 +7,7 @@ html {
   --primaryColor: #2655d6;
   --secondaryColor: #00a36e;
   //light theme
-  --bgc: #f2f2f2;
+  --bgc: #f2f2f2c2;
   --card-bgc: #f9f9fa;
   --sidebar: #3c4b6d;
   --text-color: #424750;
@@ -16,7 +16,7 @@ html {
   --approved-textColor: #246500;
   --pending-bgc: rgba(45, 204, 255, 0.3);
   --pending-textColor: #086785;
-  --rejected-bgc: rgba(255, 56, 56, 0.3);
+  --rejected-bgc: rgba(255, 56, 56, 0.8);
   --rejected-textColor: #9d0e0e;
   --disabled-bgc: #696868;
   --disabled-textColor: #474646;
@@ -38,7 +38,7 @@ html[theme="dark"] {
   --approved-textColor: #d0ffb6;
   --pending-bgc: rgba(45, 204, 255, 0.3);
   --pending-textColor: #a5e9ff;
-  --rejected-bgc: rgba(255, 56, 56, 0.3);
+  --rejected-bgc: rgb(172, 22, 22, 0.8);
   --rejected-textColor: #f2bebe;
   --disabled-bgc: #474646;
   --disabled-textColor: #929292;
@@ -222,7 +222,7 @@ body {
 
 // transitions
 .slide-in-left-enter {
-  transform: translateY(-100%);
+  transform: translateY(100%);
 }
 .slide-in-left-enter-active {
   transform: translateX(0);
@@ -234,34 +234,7 @@ body {
   opacity: 1;
 }
 .slide-in-left-exit-active {
-  transform: translateY(-100%);
+  transform: translateY(100%);
   opacity: 0;
   transition: all ease $backdropTrasitionSpeed;
-}
-
-// Sidebar
-@include tablet {
-  .sidebar__open .main_wrapper {
-    height: 100vh;
-    overflow: hidden;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    transform: scale(0.9) translateX(45%);
-    transition: all 0.5s ease-in-out;
-    box-shadow: $secondBoxShadow;
-  }
-
-  .sidebar__open .topNav_left_menu_open {
-    display: none;
-  }
-
-  .sidebar__open .topNav_left_menu_close {
-    display: block;
-  }
-}
-
-@include mobile {
-  .sidebar__open .main_wrapper {
-    transform: scale(0.9) translateX(60%);
-  }
 }

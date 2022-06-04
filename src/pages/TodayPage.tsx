@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 
+import { Messagebox } from "../components/Messagebox";
 import { PhysiciansList } from "../components/PhysiciansList";
 import { config } from "../config/config";
 import { Images } from "../constants/images";
@@ -8,6 +9,7 @@ import { useTimer } from "../hooks/useTimer";
 import { IPhysician } from "../interfaces/Physician";
 import PhysiciansContext from "../store/PhysiciansContext";
 import ThemeContext, { ETheme } from "../store/ThemeContext";
+import UIContext from "../store/UIContext";
 import { getCurrentTime } from "../utils/utils";
 
 import classes from "./TodayPage.module.scss";
@@ -15,41 +17,54 @@ import classes from "./TodayPage.module.scss";
 const FETCH_INTERVAL = 10e3;
 
 export const TodayPage = () => {
-  const { data, status, sendRequest } = useFetch();
+  const { data, status, sendRequest, error } = useFetch();
   const { physicians, setPhysicians } = useContext(PhysiciansContext);
-  const themeCtx = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
+  const uiContext = useContext(UIContext);
 
   useTimer(() => {
+    // console.log("fetching............");
+
     sendRequest(`${process.env.REACT_APP_BACKEND_URL}/physicians/`, "GET");
 
     // Automatic theme change based on the day Hour
     if (
       getCurrentTime().includes(config.eveningThreshold) &&
-      themeCtx.theme !== ETheme.dark
+      themeContext.theme !== ETheme.dark
     ) {
-      themeCtx.setTheme(ETheme.dark);
+      themeContext.setTheme(ETheme.dark);
     } else if (
       getCurrentTime().includes(config.nightThreshold) &&
-      themeCtx.theme !== ETheme.light
+      themeContext.theme !== ETheme.light
     ) {
-      themeCtx.setTheme(ETheme.light);
+      themeContext.setTheme(ETheme.light);
     }
   }, FETCH_INTERVAL);
 
   useEffect(() => {
     if (status === "fetched" && data) {
-      //   updateEquipment(SerialNumber, data as IPhysician);
       setPhysicians(data as Array<IPhysician>);
+
+      if (uiContext.isMessageboxVisible) {
+        uiContext.setMessageboxVisiblity(false);
+      }
+    } else if (status === "error") {
+      uiContext.setMessageboxVisiblity(true);
     }
   }, [status]);
 
   return (
     <section className={classes.container}>
+      <Messagebox
+        hasOkButton
+        message={error || ""}
+        title={"خطا در دریافت اطلاعات"}
+      />
+
       <div className={classes.titles}>
         <section>
           <Images.Morning className={classes.icon} />
           <h1>{"صبح"}</h1>
-          {/* <h1>{physicians.filter((phy) => phy.startTime < "13:00").length}</h1> */}
         </section>
         <section>
           <Images.Evening className={classes.icon} />
@@ -57,23 +72,25 @@ export const TodayPage = () => {
         </section>
       </div>
       <div className={classes.sections}>
-        <section>
-          <PhysiciansList
-            physicians={physicians.filter(
-              (phy) => phy.startTime < config.morningThreshold
-            )}
-            scrollInterval={2e3}
-          />
-        </section>
-        <div className={classes.divider} />
-        <section>
-          <PhysiciansList
-            physicians={physicians.filter(
-              (phy) => phy.startTime > config.morningThreshold
-            )}
-            scrollInterval={3e3}
-          />
-        </section>
+        <React.Fragment>
+          <section>
+            <PhysiciansList
+              physicians={physicians.filter(
+                (phy) => phy.startTime < config.morningThreshold
+              )}
+              scrollInterval={2e3}
+            />
+          </section>
+          <div className={classes.divider} />
+          <section>
+            <PhysiciansList
+              physicians={physicians.filter(
+                (phy) => phy.startTime > config.morningThreshold
+              )}
+              scrollInterval={3e3}
+            />
+          </section>
+        </React.Fragment>
       </div>
     </section>
   );
