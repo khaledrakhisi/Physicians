@@ -5,4 +5,5 @@ export const config = {
 
   //
   scrollStepValue: 150,
+  fetch_interval: 10e3,
 };

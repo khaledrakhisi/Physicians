@@ -45,8 +45,6 @@
   .sections {
     @include flex(row, center, flex-start);
     overflow: hidden;
-    // height: calc(100vh - ($mainHeaderSize + $mainHeaderSize + $largeSpacing));
-    // height: 500px;
     & > :first-child {
       width: 50%;
     }
