@@ -14,8 +14,6 @@ import { getCurrentTime } from "../utils/utils";
 
 import classes from "./TodayPage.module.scss";
 
-const FETCH_INTERVAL = 10e3;
-
 export const TodayPage = () => {
   const { data, status, sendRequest, error } = useFetch();
   const { physicians, setPhysicians } = useContext(PhysiciansContext);
@@ -39,7 +37,7 @@ export const TodayPage = () => {
     ) {
       themeContext.setTheme(ETheme.light);
     }
-  }, FETCH_INTERVAL);
+  }, config.fetch_interval);
 
   useEffect(() => {
     if (status === "fetched" && data) {
