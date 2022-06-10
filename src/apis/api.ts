@@ -6,6 +6,8 @@ import { MOCK_PHYSICIANS } from "./data";
 
 const FAKE_API_DELAY: number = 2e3;
 
+let n_req = 0;
+
 export const fake_fetch = async <T>(
   url: string,
   method: string
@@ -24,7 +26,12 @@ export const fake_fetch = async <T>(
       }, FAKE_API_DELAY);
     } else if (url === `${process.env.REACT_APP_BACKEND_URL}/physicians/`) {
       setTimeout(() => {
-        resolve(MOCK_PHYSICIANS as any);
+        n_req++;
+        if (n_req === 2 || n_req === 5) {
+          reject("Error on fetching the data, backend must be down");
+        } else {
+          resolve(MOCK_PHYSICIANS as any);
+        }
       }, FAKE_API_DELAY);
     } else {
       reject("Error on fetching the data, backend must be down");
