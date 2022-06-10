@@ -6,7 +6,7 @@ An application to show the physicians schedule on TV
 
 ## Description
 
-An app to show doctors' programs on TV. This app is completely online and web based. I tried to design this app as optimally as possible. This means that the program uses the TV screen efficiently. 
+An app to show doctor's programs on TV. This app is completely online and web based. I tried to design this app as optimally as possible. This means that the program uses the TV screen efficiently. 
 
 Being real-time was another challenge. I used Websockets to connect the server to the client. Therefore, there is no need to fetch data over a period of time.
 
