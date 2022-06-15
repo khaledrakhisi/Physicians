@@ -21,22 +21,6 @@ export const PhysiciansContextProvider: React.FunctionComponent<
 > = ({ children }) => {
   const [physicians, setPhysicians] = useState<Array<IPhysician>>([]);
 
-  // function updateEquipment(
-  //   serialNumber: string,
-  //   newTelematicData: ITelematicData
-  // ) {
-  //   setPhysicians((prev) => [
-  //     ...prev.map((item) =>
-  //       item.SerialNumber === serialNumber
-  //         ? {
-  //             ...item,
-  //             telematicData: newTelematicData,
-  //           }
-  //         : item
-  //     ),
-  //   ]);
-  // }
-
   const physiciansValue: IPhysiciansContext = {
     physicians,
     setPhysicians,
