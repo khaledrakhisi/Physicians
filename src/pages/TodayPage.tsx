@@ -21,8 +21,6 @@ export const TodayPage = () => {
   const uiContext = useContext(UIContext);
 
   useTimer(() => {
-    // console.log("fetching............");
-
     sendRequest(`${process.env.REACT_APP_BACKEND_URL}/physicians/`, "GET");
 
     // Automatic theme change based on the day Hour

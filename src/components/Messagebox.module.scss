@@ -17,7 +17,6 @@
     min-width: 200px;
     background: var(--bgc);
     padding: $smallSpacing;
-    // border-radius: 7px;
     height: 70px;
 
     & > h1 {
@@ -40,8 +39,6 @@
 
   & > .buttons {
     @include flex(row, flex-end);
-    // margin-top: auto;
-    // padding: $mediumSpacing;
     width: 100%;
     margin-left: $smallSpacing;
   }
