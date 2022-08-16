@@ -8,13 +8,11 @@
   min-width: 210px;
   width: 85%;
   min-height: 150px;
-  // max-height: 190px;
   margin: $smallSpacing;
   overflow: hidden;
   @include trans(all ease 1s);
 
   &__header {
-    // @include flex(row, space-between, center);
     @include flex(row, center, center);
     background: var(--secondaryColor);
     border-radius: 2px 2px 0 0;

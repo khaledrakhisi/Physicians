@@ -2,8 +2,6 @@
 
 .physician_list {
   @include flex(column, flex-start);
-  // max-height: 80vh;
-  // height: 100%;
   overflow: scroll;
   height: calc(100vh - ($mainHeaderSize + $mainHeaderSize));
 
