@@ -14,6 +14,7 @@
 
   &__header {
     @include flex(row, center, center);
+
     background: var(--secondaryColor);
     border-radius: 2px 2px 0 0;
     padding: $smallSpacing;
