@@ -15,7 +15,6 @@ export const fake_fetch = async <T>(
   return new Promise((resolve, reject) => {
     if (url.startsWith(`${process.env.REACT_APP_BACKEND_URL}/physicians/:`)) {
       const param = url.substring(url.indexOf("/:") + 2);
-      // console.log(param);
 
       setTimeout(() => {
         resolve(
