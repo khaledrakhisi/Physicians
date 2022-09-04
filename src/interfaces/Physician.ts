@@ -1,7 +1,12 @@
 export interface IPhysician {
-  id: string;
-  name: string;
-  startTime: string;
+  doctorName: string;
+  clinic: string;
   specialty: string;
-  remainingAppointments: number;
+  image: null;
+  appointmentTime: string;
+  defined: number;
+  transfer: number;
+  get: number;
+  total: number;
+  remain: number;
 }

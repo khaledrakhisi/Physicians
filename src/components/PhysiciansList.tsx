@@ -55,7 +55,9 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
   return (
     <ul className={classes.physician_list} ref={listRef}>
       {physicians.length ? (
-        physicians.map((phy) => <PhysicianCard physician={phy} key={phy.id} />)
+        physicians.map((phy) => (
+          <PhysicianCard physician={phy} key={phy.doctorName} />
+        ))
       ) : (
         <h1>{"در این شیفت پزشکی حضور ندارد"}</h1>
       )}

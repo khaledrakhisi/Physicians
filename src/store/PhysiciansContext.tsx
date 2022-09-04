@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import { IPhysician } from "../interfaces/Physician";
+import { IAPIResponse } from "../interfaces/APIResponse";
 
 type IPhysiciansContext = {
-  physicians: Array<IPhysician>;
-  setPhysicians: (equipments: Array<IPhysician>) => void;
+  physicians: IAPIResponse | null;
+  setPhysicians: (response: IAPIResponse) => void;
 };
 
 const PhysiciansContext = React.createContext<IPhysiciansContext>({
-  physicians: [],
+  physicians: null,
   setPhysicians: () => {},
 });
 
@@ -19,7 +19,14 @@ interface IPhysiciansContextProviderProps {
 export const PhysiciansContextProvider: React.FunctionComponent<
   IPhysiciansContextProviderProps
 > = ({ children }) => {
-  const [physicians, setPhysicians] = useState<Array<IPhysician>>([]);
+  const [physicians, setPhysicians] = useState<IAPIResponse>({
+    data: {
+      count: 0,
+      doctorsLists: [],
+    },
+    message: "",
+    status: "",
+  });
 
   const physiciansValue: IPhysiciansContext = {
     physicians,

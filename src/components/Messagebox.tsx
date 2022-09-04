@@ -10,7 +10,7 @@ import classes from "./Messagebox.module.scss";
 
 interface IMessageBoxProps {
   title: string;
-  message: string;
+  message: string | Error;
   hasOkButton: boolean;
 }
 
@@ -40,7 +40,7 @@ export const Messagebox: React.FunctionComponent<IMessageBoxProps> = ({
           />
           <h1>{title}</h1>
         </div>
-        <div className={classes.message}>{message}</div>
+        <div className={classes.message}>{message.toString()}</div>
         <div className={classes.buttons}>
           {hasOkButton && (
             <Button
