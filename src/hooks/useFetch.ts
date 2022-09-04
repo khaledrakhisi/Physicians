@@ -45,19 +45,19 @@ function useFetch<T = unknown>(): State<T> {
     dispatch({ type: "loading" });
 
     try {
-      // const response = await fetch(url, {
-      //   ...options,
-      // });
-      const response = await fake_fetch(url, "GET");
-      // if (!response.ok) {
-      //   throw new Error(response.statusText);
-      // }
-      // if (response.ok && response.status !== 200) {
-      //   throw new Error("302 error happend. Maybe you forgot .json");
-      // }
+      const response = await fetch(url, {
+        ...options,
+      });
+      // const response = await fake_fetch(url, "GET");
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      if (response.ok && response.status !== 200) {
+        throw new Error("302 error happend. Maybe you forgot .json");
+      }
 
-      // const data = (await response.json()) as T;
-      const data = (await response) as T;
+      const data = (await response.json()) as T;
+      // const data = (await response) as T;
 
       dispatch({ type: "fetched", payload: data });
     } catch (error) {

@@ -29,7 +29,7 @@ export const fake_fetch = async <T>(
         if (n_req === 2 || n_req === 5) {
           reject("Error on fetching the data, backend must be down");
         } else {
-          resolve(JSON.stringify(MOCK_API_RESPONSE) as any);
+          resolve(MOCK_API_RESPONSE as any);
         }
       }, FAKE_API_DELAY);
     } else {

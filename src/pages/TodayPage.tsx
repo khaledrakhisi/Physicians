@@ -15,13 +15,26 @@ import { getCurrentTime } from "../utils/utils";
 import classes from "./TodayPage.module.scss";
 
 export const TodayPage = () => {
-  const { data, status, sendRequest, error } = useFetch();
+  const {
+    data: response,
+    status,
+    sendRequest,
+    error,
+  } = useFetch<IAPIResponse>();
   const { physicians, setPhysicians } = useContext(PhysiciansContext);
   const themeContext = useContext(ThemeContext);
   const uiContext = useContext(UIContext);
 
   useTimer(() => {
-    sendRequest(`${process.env.REACT_APP_BACKEND_URL}/physicians/`);
+    sendRequest(
+      `${process.env.REACT_APP_BACKEND_URL}/doctors/get-doctor-today/`,
+      {
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     // Automatic theme change based on the day Hour
     if (
@@ -38,10 +51,11 @@ export const TodayPage = () => {
   }, config.fetch_interval);
 
   useEffect(() => {
-    if (status === "fetched" && data) {
-      console.log(data);
-
-      setPhysicians(data as IAPIResponse);
+    if (status === "fetched" && response) {
+      console.log(response.data);
+      if (response.data) {
+        setPhysicians(response.data.doctorsLists);
+      }
 
       if (uiContext.isMessageboxVisible) {
         uiContext.setMessageboxVisiblity(false);
@@ -71,27 +85,24 @@ export const TodayPage = () => {
       </div>
       <div className={classes.sections}>
         <React.Fragment>
-          {physicians && (
-            <section>
-              <PhysiciansList
-                physicians={physicians.data.doctorsLists.filter(
-                  (phy) => phy.appointmentTime < config.morningThreshold
-                )}
-                scrollInterval={2e3}
-              />
-            </section>
-          )}
+          <section>
+            <PhysiciansList
+              physicians={physicians.filter(
+                (phy) => phy.appointmentTime < config.morningThreshold
+              )}
+              scrollInterval={2e3}
+            />
+          </section>
+
           <div className={classes.divider} />
-          {physicians && (
-            <section>
-              <PhysiciansList
-                physicians={physicians.data.doctorsLists.filter(
-                  (phy) => phy.appointmentTime > config.morningThreshold
-                )}
-                scrollInterval={3e3}
-              />
-            </section>
-          )}
+          <section>
+            <PhysiciansList
+              physicians={physicians.filter(
+                (phy) => phy.appointmentTime > config.morningThreshold
+              )}
+              scrollInterval={3e3}
+            />
+          </section>
         </React.Fragment>
       </div>
     </section>
