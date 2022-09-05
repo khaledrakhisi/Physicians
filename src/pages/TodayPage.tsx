@@ -30,7 +30,11 @@ export const TodayPage = () => {
       `${process.env.REACT_APP_BACKEND_URL}/doctors/get-doctor-today/`,
       {
         mode: "no-cors",
+        method: "GET",
+        cache: "no-cache",
+        credentials: "include",
         headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           "Content-Type": "application/json",
         },
       }
@@ -52,7 +56,6 @@ export const TodayPage = () => {
 
   useEffect(() => {
     if (status === "fetched" && response) {
-      console.log(response.data);
       if (response.data) {
         setPhysicians(response.data.doctorsLists);
       }
