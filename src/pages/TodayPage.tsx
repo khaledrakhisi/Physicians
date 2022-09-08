@@ -26,17 +26,19 @@ export const TodayPage = () => {
   const uiContext = useContext(UIContext);
 
   useTimer(() => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "*");
+    headers.append("Authorization", `Bearer ${process.env.REACT_APP_API_KEY}`);
+    headers.append("Origin", "http://localhost:3000");
     sendRequest(
       `${process.env.REACT_APP_BACKEND_URL}/doctors/get-doctor-today/`,
       {
-        mode: "no-cors",
+        // mode: "no-cors",
         method: "GET",
         cache: "no-cache",
         credentials: "include",
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
-          "Content-Type": "application/json",
-        },
+        headers,
       }
     );
 
