@@ -1,7 +1,7 @@
 export const config = {
-  morningThreshold: "14:00:00",
-  eveningThreshold: "18:00:00",
-  nightThreshold: "06:00:00",
+  morningThreshold: new Date("14:00:00"),
+  eveningThreshold: new Date("18:00:00"),
+  nightThreshold: new Date("06:00:00"),
 
   //
   scrollStepValue: 150,

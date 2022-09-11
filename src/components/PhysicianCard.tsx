@@ -2,6 +2,7 @@ import React from "react";
 
 import { Images } from "../constants/images";
 import { IPhysician } from "../interfaces/Physician";
+import { convertTo24HoursFormat, getTodayDate } from "../utils/utils";
 
 import classes from "./PhysicianCard.module.scss";
 
@@ -58,7 +59,9 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
           <div className={classes.physician_card__info__subinfo__hour}>
             <h3>{"ساعت حضور"}</h3>
             <h2 className={`${!physician.remain ? classes.disabled : null}`}>
-              {physician.appointmentTime}
+              {convertTo24HoursFormat(
+                new Date(`${getTodayDate()} ${physician.appointmentTime}`)
+              )}
             </h2>
           </div>
 

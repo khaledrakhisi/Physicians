@@ -10,7 +10,11 @@ import { IAPIResponse } from "../interfaces/APIResponse";
 import PhysiciansContext from "../store/PhysiciansContext";
 import ThemeContext, { ETheme } from "../store/ThemeContext";
 import UIContext from "../store/UIContext";
-import { getCurrentTime } from "../utils/utils";
+import {
+  convertTo24HoursFormat,
+  getCurrentTime,
+  getTodayDate,
+} from "../utils/utils";
 
 import classes from "./TodayPage.module.scss";
 
@@ -44,12 +48,12 @@ export const TodayPage = () => {
 
     // Automatic theme change based on the day Hour
     if (
-      getCurrentTime().includes(config.eveningThreshold) &&
+      getCurrentTime().includes(config.eveningThreshold.toDateString()) &&
       themeContext.theme !== ETheme.dark
     ) {
       themeContext.setTheme(ETheme.dark);
     } else if (
-      getCurrentTime().includes(config.nightThreshold) &&
+      getCurrentTime().includes(config.nightThreshold.toDateString()) &&
       themeContext.theme !== ETheme.light
     ) {
       themeContext.setTheme(ETheme.light);
@@ -60,16 +64,20 @@ export const TodayPage = () => {
     if (status === "fetched" && response) {
       if (response.data) {
         setPhysicians(response.data.doctorsLists);
+        // console.log(response.data);
       }
 
       if (uiContext.isMessageboxVisible) {
         uiContext.setMessageboxVisiblity(false);
       }
-      console.log(response.data);
     } else if (status === "error") {
       uiContext.setMessageboxVisiblity(true);
     }
   }, [status]);
+
+  // useEffect(() => {
+  //   console.log(physicians);
+  // }, [physicians]);
 
   return (
     <section className={classes.container}>
@@ -94,7 +102,13 @@ export const TodayPage = () => {
           <section>
             <PhysiciansList
               physicians={physicians.filter(
-                (phy) => phy.appointmentTime < config.morningThreshold
+                (phy) =>
+                  convertTo24HoursFormat(
+                    new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                  ) <
+                  convertTo24HoursFormat(
+                    new Date(`${getTodayDate()} ${config.morningThreshold}`)
+                  )
               )}
               scrollInterval={2e3}
             />
@@ -104,7 +118,13 @@ export const TodayPage = () => {
           <section>
             <PhysiciansList
               physicians={physicians.filter(
-                (phy) => phy.appointmentTime > config.morningThreshold
+                (phy) =>
+                  convertTo24HoursFormat(
+                    new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                  ) >
+                  convertTo24HoursFormat(
+                    new Date(`${getTodayDate()} ${config.morningThreshold}`)
+                  )
               )}
               scrollInterval={3e3}
             />
