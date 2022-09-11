@@ -30,7 +30,7 @@ export const TodayPage = () => {
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "*");
     headers.append("Authorization", `Bearer ${process.env.REACT_APP_API_KEY}`);
-    headers.append("Origin", "http://localhost:3000");
+
     sendRequest(
       `${process.env.REACT_APP_BACKEND_URL}/doctors/get-doctor-today/`,
       {
