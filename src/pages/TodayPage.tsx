@@ -65,6 +65,7 @@ export const TodayPage = () => {
       if (uiContext.isMessageboxVisible) {
         uiContext.setMessageboxVisiblity(false);
       }
+      console.log(response.data);
     } else if (status === "error") {
       uiContext.setMessageboxVisiblity(true);
     }
