@@ -75,10 +75,6 @@ export const TodayPage = () => {
     }
   }, [status]);
 
-  // useEffect(() => {
-  //   console.log(physicians);
-  // }, [physicians]);
-
   return (
     <section className={classes.container}>
       <Messagebox
