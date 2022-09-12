@@ -101,15 +101,19 @@ export const TodayPage = () => {
         <React.Fragment>
           <section>
             <PhysiciansList
-              physicians={physicians.filter(
-                (phy) =>
-                  convertTo24HoursFormat(
-                    new Date(`${getTodayDate()} ${phy.appointmentTime}`)
-                  ) <
-                  convertTo24HoursFormat(
-                    new Date(`${getTodayDate()} ${config.morningThreshold}`)
-                  )
-              )}
+              physicians={physicians
+                .filter(
+                  (phy) =>
+                    convertTo24HoursFormat(
+                      new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                    ) <
+                    convertTo24HoursFormat(
+                      new Date(`${getTodayDate()} ${config.morningThreshold}`)
+                    )
+                )
+                .sort((a, b) => {
+                  return b.remain - a.remain;
+                })}
               scrollInterval={2e3}
             />
           </section>
@@ -117,15 +121,19 @@ export const TodayPage = () => {
           <div className={classes.divider} />
           <section>
             <PhysiciansList
-              physicians={physicians.filter(
-                (phy) =>
-                  convertTo24HoursFormat(
-                    new Date(`${getTodayDate()} ${phy.appointmentTime}`)
-                  ) >
-                  convertTo24HoursFormat(
-                    new Date(`${getTodayDate()} ${config.morningThreshold}`)
-                  )
-              )}
+              physicians={physicians
+                .filter(
+                  (phy) =>
+                    convertTo24HoursFormat(
+                      new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                    ) >
+                    convertTo24HoursFormat(
+                      new Date(`${getTodayDate()} ${config.morningThreshold}`)
+                    )
+                )
+                .sort((a, b) => {
+                  return b.remain - a.remain;
+                })}
               scrollInterval={3e3}
             />
           </section>
