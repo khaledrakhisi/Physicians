@@ -114,7 +114,7 @@ export const TodayPage = () => {
                 .sort((a, b) => {
                   return b.remain - a.remain;
                 })}
-              scrollInterval={2e3}
+              scrollInterval={config.scrollInterval_right}
             />
           </section>
 
@@ -134,7 +134,7 @@ export const TodayPage = () => {
                 .sort((a, b) => {
                   return b.remain - a.remain;
                 })}
-              scrollInterval={3e3}
+              scrollInterval={config.scrollInterval_left}
             />
           </section>
         </React.Fragment>

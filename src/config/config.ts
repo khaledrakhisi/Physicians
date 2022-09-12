@@ -4,6 +4,8 @@ export const config = {
   nightThreshold: new Date("06:00:00"),
 
   //
-  scrollStepValue: 150,
+  scrollStepValue: 10,
+  scrollInterval_left: 400,
+  scrollInterval_right: 400,
   fetch_interval: 10e3,
 };
