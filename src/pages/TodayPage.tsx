@@ -64,7 +64,6 @@ export const TodayPage = () => {
     if (status === "fetched" && response) {
       if (response.data) {
         setPhysicians(response.data.doctorsLists);
-        // console.log(response.data);
       }
 
       if (uiContext.isMessageboxVisible) {

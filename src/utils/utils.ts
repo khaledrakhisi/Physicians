@@ -28,7 +28,6 @@ export function convertTo24HoursFormat(time: Date) {
   return `${time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()}:${
     time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes()
   }`;
-  // return time.toLocaleTimeString("en-US");
 }
 
 export function convertMsToHM(milliseconds: number) {
