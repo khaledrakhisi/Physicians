@@ -1,7 +1,5 @@
 import { useCallback, useReducer } from "react";
 
-import { fake_fetch } from "../apis/api";
-
 interface State<T> {
   data?: T;
   error?: Error;

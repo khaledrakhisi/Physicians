@@ -33,11 +33,6 @@ export const PhysiciansList: React.FunctionComponent<IPhysicianListProps> = ({
       });
 
       setScrollDirection((prev) => {
-        // console.log(
-        //   bottomRef.current!.offsetHeight + bottomRef.current!.scrollTop,
-        //   bottomRef.current!.scrollHeight
-        // );
-
         if (
           listRef.current!.offsetHeight + listRef.current!.scrollTop >=
           listRef.current!.scrollHeight
