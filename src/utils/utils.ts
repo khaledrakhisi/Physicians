@@ -24,6 +24,13 @@ export function getCurrentTime() {
   return new Date().toTimeString();
 }
 
+export function getStartEndTime(time: string) {
+  const times = time.replaceAll(" ", "").split("-");
+  console.log(times);
+
+  return times;
+}
+
 export function convertTo24HoursFormat(time: Date) {
   return `${time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()}:${
     time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes()

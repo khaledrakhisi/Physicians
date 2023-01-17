@@ -13,6 +13,7 @@ import UIContext from "../store/UIContext";
 import {
   convertTo24HoursFormat,
   getCurrentTime,
+  getStartEndTime,
   getTodayDate,
 } from "../utils/utils";
 
@@ -64,6 +65,7 @@ export const TodayPage = () => {
     if (status === "fetched" && response) {
       if (response.data) {
         setPhysicians(response.data.doctorsLists);
+        console.log(response.data);
       }
 
       if (uiContext.isMessageboxVisible) {
@@ -100,7 +102,11 @@ export const TodayPage = () => {
                 .filter(
                   (phy) =>
                     convertTo24HoursFormat(
-                      new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                      new Date(
+                        `${getTodayDate()} ${
+                          getStartEndTime(phy.appointmentTime)[0]
+                        }`
+                      )
                     ) <
                     convertTo24HoursFormat(
                       new Date(`${getTodayDate()} ${config.morningThreshold}`)
@@ -114,13 +120,17 @@ export const TodayPage = () => {
           </section>
 
           <div className={classes.divider} />
-          <section>
+          {/* <section>
             <PhysiciansList
               physicians={physicians
                 .filter(
                   (phy) =>
                     convertTo24HoursFormat(
-                      new Date(`${getTodayDate()} ${phy.appointmentTime}`)
+                      new Date(
+                        `${getTodayDate()} ${
+                          getStartEndTime(phy.appointmentTime)[0]
+                        }`
+                      )
                     ) >
                     convertTo24HoursFormat(
                       new Date(`${getTodayDate()} ${config.morningThreshold}`)
@@ -131,7 +141,7 @@ export const TodayPage = () => {
                 })}
               scrollInterval={config.scrollInterval_left}
             />
-          </section>
+          </section> */}
         </React.Fragment>
       </div>
     </section>
