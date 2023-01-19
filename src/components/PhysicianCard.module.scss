@@ -23,6 +23,7 @@
     cursor: move;
     color: #fff;
     font-size: $fontSizeHeadlineLarge;
+    white-space: nowrap;
 
     &.disabled {
       background: var(--disabled-bgc);

@@ -4,6 +4,7 @@ export interface IPhysician {
   specialty: string;
   image: null;
   appointmentTime: string;
+  doctorVisitTime: string;
   defined: number;
   transfer: number;
   get: number;

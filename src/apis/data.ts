@@ -12,6 +12,7 @@ export const MOCK_API_RESPONSE: IAPIResponse = {
         specialty: "فلوشیپ ناباروری",
         image: null,
         appointmentTime: "10:00:00",
+        doctorVisitTime: "10:00:00",
         defined: 5,
         transfer: 6,
         get: 1,

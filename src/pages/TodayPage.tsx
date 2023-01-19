@@ -49,12 +49,12 @@ export const TodayPage = () => {
 
     // Automatic theme change based on the day Hour
     if (
-      getCurrentTime().includes(config.eveningThreshold.toDateString()) &&
+      getCurrentTime().includes(config.eveningThreshold) &&
       themeContext.theme !== ETheme.dark
     ) {
       themeContext.setTheme(ETheme.dark);
     } else if (
-      getCurrentTime().includes(config.nightThreshold.toDateString()) &&
+      getCurrentTime().includes(config.nightThreshold) &&
       themeContext.theme !== ETheme.light
     ) {
       themeContext.setTheme(ETheme.light);
@@ -65,7 +65,6 @@ export const TodayPage = () => {
     if (status === "fetched" && response) {
       if (response.data) {
         setPhysicians(response.data.doctorsLists);
-        console.log(response.data);
       }
 
       if (uiContext.isMessageboxVisible) {
@@ -99,19 +98,20 @@ export const TodayPage = () => {
           <section>
             <PhysiciansList
               physicians={physicians
-                .filter(
-                  (phy) =>
+                .filter((phy) => {
+                  return (
                     convertTo24HoursFormat(
                       new Date(
                         `${getTodayDate()} ${
-                          getStartEndTime(phy.appointmentTime)[0]
+                          getStartEndTime(phy.doctorVisitTime)[0]
                         }`
                       )
                     ) <
                     convertTo24HoursFormat(
                       new Date(`${getTodayDate()} ${config.morningThreshold}`)
                     )
-                )
+                  );
+                })
                 .sort((a, b) => {
                   return b.remain - a.remain;
                 })}
@@ -120,7 +120,7 @@ export const TodayPage = () => {
           </section>
 
           <div className={classes.divider} />
-          {/* <section>
+          <section>
             <PhysiciansList
               physicians={physicians
                 .filter(
@@ -128,7 +128,7 @@ export const TodayPage = () => {
                     convertTo24HoursFormat(
                       new Date(
                         `${getTodayDate()} ${
-                          getStartEndTime(phy.appointmentTime)[0]
+                          getStartEndTime(phy.doctorVisitTime)[0]
                         }`
                       )
                     ) >
@@ -141,7 +141,7 @@ export const TodayPage = () => {
                 })}
               scrollInterval={config.scrollInterval_left}
             />
-          </section> */}
+          </section>
         </React.Fragment>
       </div>
     </section>

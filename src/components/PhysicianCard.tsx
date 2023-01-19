@@ -2,7 +2,11 @@ import React from "react";
 
 import { Images } from "../constants/images";
 import { IPhysician } from "../interfaces/Physician";
-import { convertTo24HoursFormat, getTodayDate } from "../utils/utils";
+import {
+  convertTo24HoursFormat,
+  getStartEndTime,
+  getTodayDate,
+} from "../utils/utils";
 
 import classes from "./PhysicianCard.module.scss";
 
@@ -60,7 +64,11 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
             <h3>{"ساعت حضور"}</h3>
             <h2 className={`${!physician.remain ? classes.disabled : null}`}>
               {convertTo24HoursFormat(
-                new Date(`${getTodayDate()} ${physician.appointmentTime}`)
+                new Date(
+                  `${getTodayDate()} ${
+                    getStartEndTime(physician.doctorVisitTime)[0]
+                  }`
+                )
               )}
             </h2>
           </div>
