@@ -22,11 +22,17 @@
     height: 70px;
     cursor: move;
     color: #fff;
-    font-size: $fontSizeHeadlineLarge;
+    font-size: $fontSizeHeadlineMedium;
+    text-align: center;
+    // line-height: 30px;
     white-space: nowrap;
 
     &.disabled {
       background: var(--disabled-bgc);
+    }
+
+    @include tablet {
+      font-size: $fontSizeHeadlineSmall;
     }
   }
 
@@ -45,17 +51,22 @@
       }
     }
 
-    & > h3 {
+    &__name {
       color: var(--text-color);
       margin: $mediumSpacing;
-      text-align: center;
-      font-size: $fontSizeHeadlineLarge;
-      height: 50px;
-      line-height: 50px;
-      @include overflowEllipses(4);
+      text-align: right;
+      font-size: $fontSizeHeadlineMedium;
+      height: 60px;
+      line-height: 30px;
+      // @include overflowEllipses(4);
+      @include flex(row, flex-end);
 
       &.disabled {
         color: var(--disabled-textColor);
+      }
+
+      @include tablet {
+        font-size: $fontSizeHeadlineSmall;
       }
     }
 

@@ -55,9 +55,11 @@ export const PhysicianCard: React.FunctionComponent<IPhysicianCardProps> = ({
             }`}
           />
         )}
-        <h3 className={`${!physician.remain ? classes.disabled : null}`}>
-          {physician.doctorName}
-        </h3>
+        <div className={`${classes.physician_card__info__name}`}>
+          <h3 className={`${!physician.remain ? classes.disabled : null}`}>
+            {physician.doctorName}
+          </h3>
+        </div>
 
         <section className={classes.physician_card__info__subinfo}>
           <div className={classes.physician_card__info__subinfo__hour}>
